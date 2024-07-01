@@ -4,12 +4,14 @@
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <script src="https://cdn.tailwindcss.com"></script>
+   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
    <title></title>
 </head>
 <body>
 <!-- component -->
-<div class="flex flex-row min-h-screen bg-gray-100 text-gray-800">
+<div x-data="{ sidebarOpen: false }" class="flex flex-row min-h-screen bg-gray-100 text-gray-800">
     <aside
+      :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }"
       class="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-indigo-500"
     >
       <div class="sidebar-header flex items-center justify-center py-4">
@@ -247,9 +249,23 @@
         </ul>
       </div>
     </aside>
+
     <main class="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in">
       <header class="header bg-white shadow py-4 px-4">
         <div class="header-content flex items-center flex-row">
+          <button @click="sidebarOpen = !sidebarOpen" class="md:hidden flex items-center justify-center h-10 w-10">
+            <svg
+              class="h-6 w-6 text-gray-500"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
           <form action="#">
             <div class="hidden md:flex relative">
               <div
